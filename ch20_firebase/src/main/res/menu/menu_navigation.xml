@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@android:drawable/ic_menu_share"
+        android:title="모드변경"/>
+    <item
+        android:icon="@android:drawable/ic_menu_help"
+        android:title="비콘위치"/>
+    <item
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="알림설정"/>
+    <item
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="로그관리"/>
+
+</menu>

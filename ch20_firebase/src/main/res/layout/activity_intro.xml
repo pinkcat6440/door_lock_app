@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.IntroActivity">
+
+    <LinearLayout
+    android:id="@+id/intro"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <androidx.appcompat.widget.Toolbar
+    android:id="@+id/introToolbar" android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="?attr/colorPrimary"
+    android:elevation="4dp"
+    app:title="My door lock App" app:titleTextColor="#FFFFFF"/>
+
+        <TextView
+            android:id="@+id/introMainTextView"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginTop="50dp"
+            android:gravity="center_horizontal"
+            android:paddingBottom="30dp"
+            android:text="환영합니다!\n혼자 있는 시간, 함께 지키는 도어락."
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/introImageView"
+            android:layout_width="317dp"
+            android:layout_height="368dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:contentDescription="인트로 이미지"
+            android:scaleType="centerInside"
+            android:src="@drawable/intro" />
+
+        <Button
+            android:id="@+id/goToLoginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF0000"
+            android:paddingStart="40dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="40dp"
+            android:paddingBottom="15dp"
+            android:text="로그인하기"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+
+    </LinearLayout>
+
+</ScrollView>
