@@ -31,11 +31,9 @@ class AuthActivity : AppCompatActivity() {
         // 인증 처리 전 작업
         auth = Firebase.auth
         Log.d(TAG, " onCreate 실행: $auth")
-        //MyApplication.authService = auth // ✅ authService 초기화 필수
 
-        // -------------------------
+
         // Google 로그인 처리 부분
-        // -------------------------
         val requestLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
@@ -62,9 +60,7 @@ class AuthActivity : AppCompatActivity() {
             }
         }
 
-        // -------------------------
         // 구글 로그인 버튼 클릭
-        // -------------------------
         binding.googleLoginBtn.setOnClickListener {
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(com.example.ch20_firebase.R.string.default_web_client_id))
@@ -74,9 +70,7 @@ class AuthActivity : AppCompatActivity() {
             requestLauncher.launch(signInIntent)
         }
 
-        // -------------------------
         // 회원가입
-        // -------------------------
         binding.signBtn.setOnClickListener {
             val email = binding.authEmailEditView.text.toString().trim()
             val password = binding.authPasswordEditView.text.toString().trim()
@@ -100,9 +94,7 @@ class AuthActivity : AppCompatActivity() {
                 }
         }
 
-        // -------------------------
         // 로그인
-        // -------------------------
         binding.loginBtn.setOnClickListener {
             val email = binding.authEmailEditView.text.toString().trim()
             val password = binding.authPasswordEditView.text.toString().trim()
