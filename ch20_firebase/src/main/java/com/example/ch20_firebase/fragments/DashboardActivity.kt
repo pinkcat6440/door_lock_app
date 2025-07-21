@@ -47,10 +47,15 @@ class DashboardActivity : AppCompatActivity() {
 
         val adapter = MyFragmentPagerAdapter(this)
         binding.viewpager.adapter = adapter
-        TabLayoutMediator(binding.tabs, binding.viewpager) { tab, position ->
-            tab.text = "Tab${(position + 1)}"
-        }.attach()
 
+        val tabTitles = listOf("보안모드변경", "도어락로그", "비콘거리")
+        TabLayoutMediator(binding.tabs, binding.viewpager) { tab, position ->
+            // position에 따라 미리 정의된 이름 리스트에서 텍스트를 가져옵니다.
+            tab.text = tabTitles[position]
+        }.attach()
+        /*TabLayoutMediator(binding.tabs, binding.viewpager) { tab, position ->
+            tab.text = "Tab${(position + 1)}"
+        }.attach()*/
 
         // NavigationView의 헤더 뷰를 찾고 TextView에 사용자 이메일 설정
         val headerView = binding.mainDrawerView.getHeaderView(0) // 0은 첫 번째 헤더 뷰를 의미

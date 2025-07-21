@@ -17,10 +17,10 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
+        //setSupportActionBar(binding.toolbar)
     }
 
-    override fun onStart() {
+    /*override fun onStart() {
         super.onStart()
         if(!MyApplication.checkAuth()){
             binding.logoutTextView.visibility= View.VISIBLE
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             binding.mainRecyclerView.visibility=View.VISIBLE
             makeRecyclerView()
         }
-    }
+    }*/
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)

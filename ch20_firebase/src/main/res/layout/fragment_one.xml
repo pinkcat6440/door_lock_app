@@ -8,47 +8,46 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center_horizontal" android:padding="16dp">
+        android:gravity="center_horizontal"
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/modeStatusTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="현재 모드: 고령자 모드 (0)"
-            android:textSize="22sp"
+            android:text="현재 모드: " android:textSize="22sp"
             android:textStyle="bold"
             android:layout_marginBottom="30dp"/>
 
-        <RadioGroup
-            android:id="@+id/modeRadioGroup"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="30dp">
 
-            <RadioButton
-                android:id="@+id/elderlyModeRadioButton"
+            <Button
+                android:id="@+id/guestModeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="게스트 모드"
                 android:layout_marginEnd="20dp"
-                android:checked="true"
-                android:text="고령자 모드 (0)"
-                android:textSize="18sp" />
-
-            <RadioButton
-                android:id="@+id/guardianModeRadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="보호자 모드 (1)"
-                android:textSize="18sp" />
-        </RadioGroup>
-
-        <!--하드웨어로 데이터 전송-->
-        <Button
-            android:id="@+id/sendModeButton"
+                android:textSize="18sp"
+                android:backgroundTint="#4CAF50" /> <Button
+            android:id="@+id/securityModeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="저장하기"
-            android:layout_marginTop="50dp"/>
+            android:text="보안 모드"
+            android:textSize="18sp"
+            android:backgroundTint="#F44336" /> </LinearLayout>
+
+        <TextView
+            android:id="@+id/infoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="원하는 모드를 선택하세요." android:textSize="16sp"
+            android:gravity="center"
+            android:layout_marginBottom="50dp"
+            android:paddingHorizontal="20dp"/>
 
     </LinearLayout>
 </FrameLayout>
