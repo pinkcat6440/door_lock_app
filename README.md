@@ -16,6 +16,23 @@ https://eunoia3jy.tistory.com/29<br>
 파이어베이스<br> 
 https://console.firebase.google.com/project/androidtest-48e04/settings/general/android:com.example.ch20_firebase?hl=ko<br>
 
-
+<br><br>
+매뉴얼<br>
+<br>
+인트로<br>
+<img width="394" height="895" alt="image" src="https://github.com/user-attachments/assets/00f2e3d7-5da0-4941-b853-426760675c19" />
+<br>
+회원가입, 구글인증, 로그인 <br>
+<img width="405" height="900" alt="image" src="https://github.com/user-attachments/assets/cae69222-af3e-4dc4-8ec3-cbb135847165" />
+<br>
+로그아웃<br>
+<img width="406" height="864" alt="image" src="https://github.com/user-attachments/assets/d8db72f9-b9ad-4989-b6cd-fdf52526d40e" />
+<br>
+모드변경<br>
+<img width="397" height="863" alt="image" src="https://github.com/user-attachments/assets/fe07262f-4d24-44c7-b0b7-530f17541ddc" />
+<br>
+푸쉬알림<br>
+<img width="382" height="877" alt="image" src="https://github.com/user-attachments/assets/2fe70068-0c51-4f31-875d-46d95f818203" />
+<br>
 
 
