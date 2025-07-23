@@ -21,7 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "AndroidLab"
 include(":app")
-include(":ch7_layout")
-include(":ch7_layouts")
-include(":ch9_resource")
 include(":ch20_firebase")
