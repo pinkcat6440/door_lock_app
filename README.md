@@ -3,8 +3,7 @@ https://developer.android.com/studio?hl=ko<br>
 <br><br>
 
 ==== 안드로이드 스튜디오 설치하고 에뮬레이터 설치해야함 ==== <br>
-Device Manager<br>
- >> Pixel 8 Pro<br>
+Device Manager : Pixel 8 Pro <br>
 <img width="712" height="445" alt="image" src="https://github.com/user-attachments/assets/5f52275d-e144-41af-b587-ce825e685168" />
 
 
