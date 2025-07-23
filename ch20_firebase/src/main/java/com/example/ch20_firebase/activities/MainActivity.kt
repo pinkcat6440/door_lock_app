@@ -20,18 +20,6 @@ class MainActivity : AppCompatActivity() {
         //setSupportActionBar(binding.toolbar)
     }
 
-    /*override fun onStart() {
-        super.onStart()
-        if(!MyApplication.checkAuth()){
-            binding.logoutTextView.visibility= View.VISIBLE
-            binding.mainRecyclerView.visibility=View.GONE
-        }else {
-            binding.logoutTextView.visibility= View.GONE
-            binding.mainRecyclerView.visibility=View.VISIBLE
-            makeRecyclerView()
-        }
-    }*/
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
@@ -42,7 +30,4 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun makeRecyclerView(){
-
-    }
 }

@@ -99,25 +99,33 @@ class AuthActivity : AppCompatActivity() {
             val email = binding.authEmailEditView.text.toString().trim()
             val password = binding.authPasswordEditView.text.toString().trim()
 
+            // 1. 로그인 버튼 클릭 시점 로그 추가
+            Log.d(TAG, "로그인 버튼 클릭됨. 이메일: $email")
+
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "이메일과 비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show()
+                Log.w(TAG, "이메일 또는 비밀번호가 비어있습니다.")
                 return@setOnClickListener
             }
 
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
+                        // 2. 로그인 성공 시점 로그 추가
+                        Log.d(TAG, "Firebase 로그인 성공!") //
                         if (auth.currentUser?.isEmailVerified == true) {
                             MyApplication.email = email
+                            Log.d(TAG, "이메일 인증 완료, DashboardActivity로 이동.") // 이메일 인증 완료 로그
                             startActivity(Intent(this, DashboardActivity::class.java))
                             finish()
                         } else {
                             Toast.makeText(this, "이메일 인증이 필요합니다.", Toast.LENGTH_SHORT).show()
                             MyApplication.auth.signOut()
+                            Log.w(TAG, "이메일이 인증되지 않았습니다. 로그아웃 처리.")
                         }
                     } else {
                         Toast.makeText(this, "로그인 실패: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
-                        Log.e(TAG, "로그인 실패", task.exception)
+                        Log.e(TAG, "로그인 실패: ${task.exception?.message}", task.exception)
                     }
                 }
         }

@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("com.google.gms.google-services")
 }
-
 android {
     namespace = "com.example.androidlab"
     compileSdk = 36
@@ -68,15 +67,10 @@ dependencies {
     // Google Sign-In 라이브러리 (Firebase Auth 사용 시 필요)
     implementation("com.google.android.gms:play-services-auth:21.0.0") // 최신 버전 사용 권장
 
-    // Retrofit (API 통신)
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0") // JSON 데이터를 객체로 변환
     // OkHttp (Retrofit에 의해 사용됨, 로깅 인터셉터는 디버그용)
     implementation ("com.squareup.okhttp3:okhttp:4.12.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-
-
 }
