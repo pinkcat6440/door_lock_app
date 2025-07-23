@@ -1,4 +1,4 @@
-
+<img width="392" height="889" alt="image" src="https://github.com/user-attachments/assets/bf0f2079-7251-485f-ba61-2f0a1e97ff0a" />
 안드로이드 스튜디오 다운로드<br>
 https://developer.android.com/studio?hl=ko<br>
 <br><br>
@@ -22,14 +22,21 @@ Device Manager<br>
 로그아웃<br>
 <img width="406" height="864" alt="image" src="https://github.com/user-attachments/assets/d8db72f9-b9ad-4989-b6cd-fdf52526d40e" />
 <br>
-모드변경<br>
+모드변경(보안모드)<br>
 <img width="397" height="863" alt="image" src="https://github.com/user-attachments/assets/fe07262f-4d24-44c7-b0b7-530f17541ddc" />
 <br>
 푸쉬알림<br>
 <img width="382" height="877" alt="image" src="https://github.com/user-attachments/assets/2fe70068-0c51-4f31-875d-46d95f818203" />
 <br>
+모드변경(일반모드)<br>
+<img width="392" height="889" alt="image" src="https://github.com/user-attachments/assets/5fb99984-45a9-4898-814c-748d67ef4ca1" />
+<br>
+푸쉬알림<br>
+<img width="390" height="879" alt="image" src="https://github.com/user-attachments/assets/0233a6bd-682d-4aab-b95e-1e14809a4d5b" />
 
-<br><br>
+
+
+<br><br><br><br>
 참고 사이트<br><br>
 깃허브 연동<br>
 https://dev-minsuuuus.tistory.com/41<br>
