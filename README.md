@@ -3,19 +3,13 @@
 https://developer.android.com/studio?hl=ko<br>
 <br><br>
 
+안드로이드 스튜디오 설치하고 에뮬레이터 설치해야함 <br>
 Device Manager<br>
  >> Pixel 8 Pro<br>
 <img width="712" height="445" alt="image" src="https://github.com/user-attachments/assets/5f52275d-e144-41af-b587-ce825e685168" />
 
-<br><br>
-깃허브 연동<br>
-https://dev-minsuuuus.tistory.com/41<br>
-https://eunoia3jy.tistory.com/29<br>
 
 <br><br>
-파이어베이스<br> 
-https://console.firebase.google.com/project/androidtest-48e04/settings/general/android:com.example.ch20_firebase?hl=ko<br>
-
 <br><br>
 매뉴얼<br>
 <br>
@@ -34,5 +28,16 @@ https://console.firebase.google.com/project/androidtest-48e04/settings/general/a
 푸쉬알림<br>
 <img width="382" height="877" alt="image" src="https://github.com/user-attachments/assets/2fe70068-0c51-4f31-875d-46d95f818203" />
 <br>
+
+<br><br>
+참고 사이트<br><br>
+깃허브 연동<br>
+https://dev-minsuuuus.tistory.com/41<br>
+https://eunoia3jy.tistory.com/29<br>
+
+<br><br>
+파이어베이스<br> 
+https://console.firebase.google.com/project/androidtest-48e04/settings/general/android:com.example.ch20_firebase?hl=ko<br>
+
 
 
