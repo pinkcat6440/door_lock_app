@@ -1,9 +1,8 @@
-<img width="392" height="889" alt="image" src="https://github.com/user-attachments/assets/bf0f2079-7251-485f-ba61-2f0a1e97ff0a" />
-안드로이드 스튜디오 다운로드<br>
+==== 안드로이드 스튜디오 다운로드 ====<br>
 https://developer.android.com/studio?hl=ko<br>
 <br><br>
 
-안드로이드 스튜디오 설치하고 에뮬레이터 설치해야함 <br>
+==== 안드로이드 스튜디오 설치하고 에뮬레이터 설치해야함 ==== <br>
 Device Manager<br>
  >> Pixel 8 Pro<br>
 <img width="712" height="445" alt="image" src="https://github.com/user-attachments/assets/5f52275d-e144-41af-b587-ce825e685168" />
@@ -11,7 +10,7 @@ Device Manager<br>
 
 <br><br>
 <br><br>
-매뉴얼<br>
+==== 매뉴얼 ====<br>
 <br>
 인트로<br>
 <img width="394" height="895" alt="image" src="https://github.com/user-attachments/assets/00f2e3d7-5da0-4941-b853-426760675c19" />
@@ -37,7 +36,7 @@ Device Manager<br>
 
 
 <br><br><br><br>
-참고 사이트<br><br>
+==== 참고 사이트 ====<br><br>
 깃허브 연동<br>
 https://dev-minsuuuus.tistory.com/41<br>
 https://eunoia3jy.tistory.com/29<br>
