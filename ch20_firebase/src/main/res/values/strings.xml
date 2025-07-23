@@ -9,6 +9,9 @@
     <string name="door_lock_image_description">문 잠금장치 이미지</string>
     <string name="extended_fab_text">Extended FAB</string>
 
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
     <string-array name="mode_options">
         <item>일반 모드</item>
         <item>보안 모드 (얼굴 인식)</item>

@@ -20,5 +20,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "AndroidLab"
-include(":app")
 include(":ch20_firebase")
