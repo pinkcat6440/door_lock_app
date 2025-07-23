@@ -9,11 +9,6 @@ import android.widget.Toast
 import com.example.ch20_firebase.databinding.FragmentOneBinding
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.Spinner
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import okhttp3.Call
 import okhttp3.Callback
@@ -26,55 +21,68 @@ import java.io.IOException
 import org.json.JSONObject
 import com.example.ch20_firebase.R
 import android.util.Log
+import android.app.NotificationChannel // 추가
+import android.app.NotificationManager // 추가
+import android.content.Context // 추가
+import android.content.pm.PackageManager // 추가
+import android.os.Build // Build 클래스 import (API 33 권한 요청 및 채널 생성용)
+import androidx.core.app.NotificationCompat // 추가
 
 // 모드 변경값을 플라스크 서버로 전송
 class OneFragment : Fragment() {
     private var _binding: FragmentOneBinding? = null
     private val binding get() = _binding!!
     private val client = OkHttpClient()
-    private val serverUrl = "http://192.168.0.171:5000/mode" // 실제 서버 URL로 변경 필요
-
-    // fragment_one_xml.xml에 정의된 UI 요소들을 참조할 변수들
-    // 초기에는 null일 수 있으므로 nullable(?)로 선언
-    private var modeStatusTextView: TextView? = null // 현재 모드 상태 텍스트
-    private var modeStatusIcon: ImageView? = null     // 현재 모드 상태 아이콘
-    private var currentModeStatusLayout: LinearLayout? = null // 현재 모드 상태를 감싸는 배경 레이아웃
-    private var modeSelectSpinner: Spinner? = null    // 모드를 선택하는 드롭다운 (스피너)
-    private var applySettingsButton: Button? = null   // '설정 적용' 버튼
-    private var modeDescriptionTextView: TextView? = null // 현재 모드에 대한 설명 텍스트
+    private val serverUrl = "http://192.168.0.129:5000/mode" // 실제 서버 URL로 변경 필요
 
     // 사용자가 스피너에서 선택한 모드 값을 저장할 변수 (서버로 보낼 값)
     // 초기값은 "보안 모드"에 해당하는 "secure"로 설정 (UI 이미지 기준)
     private var selectedModeValue: String = "secure"
 
+    // --- 알림 관련 상수 및 변수 시작 ---
+    private val CHANNEL_ID = "mode_notification_channel"
+    private val CHANNEL_NAME = "모드 변경 알림"
+    private val NOTIFICATION_ID = 1001
+    private val REQUEST_CODE_POST_NOTIFICATIONS = 101 // 알림 권한 요청 코드
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_one, container, false)
+        // **수정:** ViewBinding을 사용하여 레이아웃을 인플레이트합니다.
+        // 기존: val view = inflater.inflate(R.layout.fragment_one, container, false)
+        _binding = FragmentOneBinding.inflate(inflater, container, false)
+        return binding.root // 바인딩된 루트 뷰를 반환
+    }
 
-        // 1. UI 요소 초기화 및 XML ID와 연결
-        // 이곳의 ID들은 최종 fragment_one_xml.xml의 ID들과 정확히 일치해야 합니다.
-        modeStatusTextView = view.findViewById(R.id.modeStatusTextView)
-        modeStatusIcon = view.findViewById(R.id.modeStatusIcon)
-        currentModeStatusLayout = view.findViewById(R.id.currentModeStatusLayout)
-        modeSelectSpinner = view.findViewById(R.id.modeSelectSpinner)
-        applySettingsButton = view.findViewById(R.id.applySettingsButton)
-        modeDescriptionTextView = view.findViewById(R.id.modeDescriptionTextView)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // --- 알림 관련 초기화 호출 시작 ---
+        createNotificationChannel() // 알림 채널 생성 (Android 8.0 이상)
+        requestNotificationPermission() // 알림 권한 요청 (Android 13 이상)
+        // --- 알림 관련 초기화 호출 끝 ---
+
+        // **삭제:** 기존 findViewByID를 통한 UI 요소 초기화 및 XML ID와 연결 부분
+        // modeStatusTextView = view.findViewById(R.id.modeStatusTextView)
+        // ... (이 모든 findViewByID 라인들을 삭제)
 
         // 2. Spinner 설정
-        // strings.xml에 <string-array name="mode_options"> 정의 필요
+        // strings.xml에 <string-array name="mode_options"> 정의는 이미 확인되었습니다.
         val modeOptions = resources.getStringArray(R.array.mode_options)
         val adapter =
             ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, modeOptions)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        modeSelectSpinner?.adapter = adapter
+        // **수정:** ViewBinding을 사용하여 스피너에 접근합니다.
+        binding.modeSelectSpinner.adapter = adapter
 
         // 3. Spinner 초기 선택값 설정 (디자인에 맞춰 보안 모드 선택)
-        modeSelectSpinner?.setSelection(1) // 0: "일반 모드", 1: "보안 모드 (얼굴 인식)"
+        // **수정:** ViewBinding을 사용하여 스피너에 접근합니다.
+        binding.modeSelectSpinner.setSelection(1) // 0: "일반 모드", 1: "보안 모드 (얼굴 인식)"
 
         // 4. Spinner 아이템 선택 리스너 설정
-        modeSelectSpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        // **수정:** ViewBinding을 사용하여 스피너에 접근합니다.
+        binding.modeSelectSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
@@ -86,20 +94,24 @@ class OneFragment : Fragment() {
                     1 -> "secure"
                     else -> "secure"
                 }
+                // 스피너 선택 시에도 UI를 즉시 업데이트하도록 추가 (기존에는 '설정 적용' 시에만 업데이트)
+                updateCurrentModeUI(selectedModeValue)
             }
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onNothingSelected(parent: AdapterView<*>?) { /* 구현할 내용 없음 */ }
         }
 
         // 5. '설정 적용' 버튼 클릭 리스너 설정
-        applySettingsButton?.setOnClickListener {
-            sendModeToServer(selectedModeValue)
+        // **수정:** ViewBinding을 사용하여 버튼에 접근합니다.
+        binding.applySettingsButton.setOnClickListener {
+            sendModeToServer(selectedModeValue) // 기존 서버 통신 로직
+            sendModeChangeNotification(selectedModeValue) // <-- 알림 발송 로직 추가
         }
 
-        // 6. 프래그먼트 로드 시 초기 UI 상태 설정 (디자인에 맞춰 보안 모드로 초기화)
-        updateCurrentModeUI("secure")
-
-        return view // 인플레이트된 뷰 반환
+        // 6. 프래그먼트 로드 시 초기 UI 상태 설정 (스피너의 초기 선택값에 맞춰 UI 업데이트)
+        // **수정:** selectedModeValue를 사용하여 초기 UI를 설정
+        updateCurrentModeUI(selectedModeValue)
     }
+
 // OneFragment 클래스 내부에 추가 (onCreateView 닫는 괄호 } 바로 아래에 넣으면 됩니다.)
 
     /**
@@ -107,41 +119,33 @@ class OneFragment : Fragment() {
      * @param mode 현재 설정된 모드 ("guest" 또는 "secure")
      */
     private fun updateCurrentModeUI(mode: String) {
-        modeStatusTextView?.let { textView ->
-            modeStatusIcon?.let { iconView ->
-                currentModeStatusLayout?.let { layout ->
-                    modeDescriptionTextView?.let { descTextView ->
-                        when (mode) {
-                            "guest" -> {
-                                textView.text = "일반 모드"
-                                textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.blue_status))
-                                iconView.setImageResource(R.drawable.ic_check_circle)
-                                iconView.setColorFilter(ContextCompat.getColor(requireContext(), R.color.blue_status))
-                                layout.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_blue_bg)
-                                descTextView.text = "스위치나 NFC 태그로 문이 즉시 열립니다."
-                            }
-                            "secure" -> {
-                                textView.text = "보안 모드 (얼굴 인식)"
-                                textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.green_status))
-                                iconView.setImageResource(R.drawable.ic_check_circle)
-                                iconView.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green_status))
-                                layout.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_green_bg)
-                                descTextView.text = "스위치를 누르면 얼굴 인식을 통해 문이 열립니다."
-                            }
-                        }
-                    }
-                }
+        when (mode) {
+            "guest" -> {
+                binding.modeStatusTextView.text = "일반 모드"
+                binding.modeStatusTextView.setTextColor(ContextCompat.getColor(requireContext(), R.color.blue_status))
+                binding.modeStatusIcon.setImageResource(R.drawable.ic_check_circle)
+                binding.modeStatusIcon.setColorFilter(ContextCompat.getColor(requireContext(), R.color.blue_status))
+                binding.currentModeStatusLayout.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_blue_bg)
+                binding.modeDescriptionTextView.text = "스위치나 NFC 태그로 문이 즉시 열립니다."
+            }
+            "secure" -> {
+                binding.modeStatusTextView.text = "보안 모드 (얼굴 인식)"
+                binding.modeStatusTextView.setTextColor(ContextCompat.getColor(requireContext(), R.color.green_status))
+                binding.modeStatusIcon.setImageResource(R.drawable.ic_check_circle)
+                binding.modeStatusIcon.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green_status))
+                binding.currentModeStatusLayout.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_green_bg)
+                binding.modeDescriptionTextView.text = "스위치를 누르면 얼굴 인식을 통해 문이 열립니다."
             }
         }
     }
 
     /**
-     * 선택된 모드 값을 Flask 서버로 전송하는 함수
+     * 선택된 모드 값을 Flask 서버로 전송하는 함수 (기존 코드와 동일)
      * @param mode 서버로 전송할 모드 값 ("guest" 또는 "secure")
      */
     private fun sendModeToServer(mode: String) {
-        Log.d("OneFragment", "Selected mode to send: $mode") // 추가
-        Log.d("OneFragment", "Server URL: $serverUrl") // 추가
+        Log.d("OneFragment", "Selected mode to send: $mode")
+        Log.d("OneFragment", "Server URL: $serverUrl")
 
         val jsonObject = JSONObject().apply {
             put("mode", mode)
@@ -170,8 +174,9 @@ class OneFragment : Fragment() {
                         if (it.isSuccessful) {
                             Toast.makeText(requireContext(), "모드 전송 성공", Toast.LENGTH_SHORT).show()
                             Log.d("OneFragment", "Server response success: ${responseBody}")
-                            println("서버 응답: $responseBody") // Logcat에서 확인 가능
-                            updateCurrentModeUI(mode)
+                            println("서버 응답: $responseBody")
+                            // 서버 응답 성공 시 UI 업데이트는 이미 onItemSelected 또는 onCreate에서 처리되므로 여기서는 제거 가능
+                            // updateCurrentModeUI(mode) // 필요시 다시 추가
                         } else {
                             Toast.makeText(requireContext(), "모드 전송 실패: ${it.code} - ${responseBody}", Toast.LENGTH_LONG).show()
                             println("서버 오류 응답: ${it.code} - ${responseBody}")
@@ -183,4 +188,97 @@ class OneFragment : Fragment() {
         })
     }
 
-} // end
+    // --- 알림 관련 함수들 추가 시작 ---
+
+    // 알림 채널 생성 함수 (Android 8.0 이상 필수)
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME, importance).apply {
+                description = "도어락 모드 변경 알림"
+            }
+            val notificationManager: NotificationManager =
+                requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    // 알림 권한 요청 함수 (Android 13 이상 필수)
+    // 이 메서드는 Fragment 클래스 내부에 있어야 합니다.
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CODE_POST_NOTIFICATIONS) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // 권한 승인됨
+                Log.d("OneFragment", "Notification permission granted.")
+            } else {
+                // 권한 거부됨
+                Log.w("OneFragment", "Notification permission denied.")
+                Toast.makeText(requireContext(), "알림 권한이 거부되어 알림을 표시할 수 없습니다.", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    private fun requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // Android 13 (API 33) 이상
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    android.Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                // Fragment에서 권한 요청: requestPermissions()
+                requestPermissions(
+                    arrayOf(android.Manifest.permission.POST_NOTIFICATIONS),
+                    REQUEST_CODE_POST_NOTIFICATIONS
+                )
+            }
+        }
+    }
+
+    // 모드 변경 알림 보내는 함수
+    private fun sendModeChangeNotification(mode: String) {
+        // Android 13 (API 33) 이상에서 권한이 없는 경우 알림을 보내지 않음
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+            ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            Log.w("OneFragment", "Cannot send notification: POST_NOTIFICATIONS permission not granted.")
+            Toast.makeText(requireContext(), "알림 권한이 없어 알림을 보낼 수 없습니다.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val notificationManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        val notificationTitle = "도어락 모드 변경"
+        val notificationText = "${getDisplayModeName(mode)}이(가) 적용되었습니다."
+
+        val builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_check_circle) // drawable 폴더에 ic_check_circle.xml 아이콘이 이미 있습니다.
+            .setContentTitle(notificationTitle)
+            .setContentText(notificationText)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setAutoCancel(true) // 사용자가 탭하면 알림이 사라지도록 설정
+
+        notificationManager.notify(NOTIFICATION_ID, builder.build())
+        Log.d("OneFragment", "Notification sent for mode: $mode")
+    }
+
+    // "guest"나 "secure" 값을 "일반 모드", "보안 모드"로 변환하는 헬퍼 함수
+    private fun getDisplayModeName(modeValue: String): String {
+        return when (modeValue) {
+            "guest" -> "일반 모드"
+            "secure" -> "보안 모드 (얼굴 인식)"
+            else -> modeValue // 예상치 못한 값일 경우 그대로 반환
+        }
+    }
+
+    // --- 알림 관련 함수들 추가 끝 ---
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null // 뷰가 파괴될 때 바인딩 객체를 해제하여 메모리 누수 방지
+    }
+
+} // OneFragment 클래스 끝

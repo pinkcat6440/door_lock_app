@@ -2,7 +2,6 @@
     <string name="app_name">My Firebase App</string>
     <string name="default_web_client_id" translatable="false">442515671806-orr67h5hblf1pcevn24v9da5i1bu74tc.apps.googleusercontent.com</string>
 
-
     <string name="drawer_opened">Opened Drawer</string>
     <string name="drawer_closed">Closed Drawer</string>
 
