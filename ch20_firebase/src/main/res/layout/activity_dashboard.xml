@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.DashboardActivity"
-    android:id="@+id/drawer">
+    android:id="@+id/drawer"
+    android:fitsSystemWindows="true">
 
      <!--첫번째 영역-->
     <androidx.coordinatorlayout.widget.CoordinatorLayout
