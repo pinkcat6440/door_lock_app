@@ -1,9 +1,9 @@
-package com.example.ch20_firebase.activities
+package com.yourname.ch20_firebase.activities
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.ch20_firebase.databinding.ActivityIntroBinding
+import com.yourname.ch20_firebase.databinding.ActivityIntroBinding
 import android.util.Log
 
 class IntroActivity : AppCompatActivity() {

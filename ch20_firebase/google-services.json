@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "442515671806",
-    "project_id": "androidtest-48e04",
-    "storage_bucket": "androidtest-48e04.firebasestorage.app"
+    "project_number": "1000569794838",
+    "project_id": "android-b2e6c",
+    "storage_bucket": "android-b2e6c.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:442515671806:android:1f14ca667930ab9f0df3af",
+        "mobilesdk_app_id": "1:1000569794838:android:9274619e77a6abfd35a037",
         "android_client_info": {
-          "package_name": "com.example.ch20_firebase"
+          "package_name": "com.yourname.ch20_firebase"
         }
       },
       "oauth_client": [
         {
-          "client_id": "442515671806-0cucsohtshmhcsif9l9t3humhpshch6p.apps.googleusercontent.com",
+          "client_id": "1000569794838-sgujvnsjk89bib12imfjbehn2i3prqi3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.ch20_firebase",
+            "package_name": "com.yourname.ch20_firebase",
             "certificate_hash": "a16b2cc6e262468bfbd19339c3b962c1d4fa92d2"
           }
         },
         {
-          "client_id": "442515671806-orr67h5hblf1pcevn24v9da5i1bu74tc.apps.googleusercontent.com",
+          "client_id": "1000569794838-hnp9o22ldhrcvhmjlgqfeabgp42mbl35.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAzdwxD9Y46FmhxBoJrnMWa2g9-Mc4NAEQ"
+          "current_key": "AIzaSyAvGmIyC24-jPE_5EPKb2KV-bkrcf6yrYs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "442515671806-orr67h5hblf1pcevn24v9da5i1bu74tc.apps.googleusercontent.com",
+              "client_id": "1000569794838-hnp9o22ldhrcvhmjlgqfeabgp42mbl35.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -45,3 +45,4 @@
   ],
   "configuration_version": "1"
 }
+

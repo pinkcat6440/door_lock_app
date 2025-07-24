@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
     <application
-        android:name=".MyApplication"
+        android:name="com.yourname.ch20_firebase.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,7 +16,7 @@
         android:theme="@style/Theme.AndroidLab"
         android:networkSecurityConfig="@xml/network_security_config">
         <activity
-            android:name=".activities.IntroActivity"
+            android:name="com.yourname.ch20_firebase.activities.IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,13 +25,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.AuthActivity"
+            android:name="com.yourname.ch20_firebase.activities.AuthActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.yourname.ch20_firebase.activities.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".fragments.DashboardActivity"
+            android:name="com.yourname.ch20_firebase.fragments.DashboardActivity"
             android:exported="false" />
     </application>
 

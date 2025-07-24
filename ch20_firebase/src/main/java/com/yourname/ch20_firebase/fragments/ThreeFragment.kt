@@ -1,11 +1,11 @@
-package com.example.ch20_firebase.fragments
+package com.yourname.ch20_firebase.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.ch20_firebase.R
+import com.yourname.ch20_firebase.R
 
 
 class ThreeFragment : Fragment() {

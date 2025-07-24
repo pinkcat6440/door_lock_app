@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.DashboardActivity"
+    tools:context="com.yourname.ch20_firebase.fragments.DashboardActivity"
     android:id="@+id/drawer"
     android:fitsSystemWindows="true">
 

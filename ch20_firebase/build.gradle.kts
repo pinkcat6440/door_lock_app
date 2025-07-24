@@ -4,11 +4,11 @@ plugins {
     id("com.google.gms.google-services")
 }
 android {
-    namespace = "com.example.ch20_firebase"
+    namespace = "com.yourname.ch20_firebase"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.ch20_firebase"
+        applicationId = "com.yourname.ch20_firebase"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

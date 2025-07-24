@@ -1,4 +1,4 @@
-package com.example.ch20_firebase.fragments // 본인의 패키지명에 맞게 변경해주세요
+package com.yourname.ch20_firebase.fragments // 본인의 패키지명에 맞게 변경해주세요
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.example.ch20_firebase.databinding.FragmentOneBinding
+import com.yourname.ch20_firebase.databinding.FragmentOneBinding
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
@@ -19,7 +19,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
 import java.io.IOException
 import org.json.JSONObject
-import com.example.ch20_firebase.R
+import com.yourname.ch20_firebase.R
 import android.util.Log
 import android.app.NotificationChannel // 추가
 import android.app.NotificationManager // 추가

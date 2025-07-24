@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F9F9F9" tools:context=".fragments.OneFragment"> <ScrollView
+    android:background="#F9F9F9" tools:context="com.yourname.ch20_firebase.fragments.OneFragment"> <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"

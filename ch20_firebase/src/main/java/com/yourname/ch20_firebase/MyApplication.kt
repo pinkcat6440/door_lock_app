@@ -1,4 +1,4 @@
-package com.example.ch20_firebase
+package com.yourname.ch20_firebase
 
 import androidx.multidex.MultiDexApplication
 import com.google.firebase.auth.FirebaseAuth
